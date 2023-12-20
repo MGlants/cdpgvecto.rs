@@ -13,10 +13,9 @@ ARG TARGETARCH
 # renovate: datasource=github-releases depName=tensorchord/pgvecto.rs
 ARG PGVECTORS_TAG=v0.1.11
 
-RUN curl --fail -o pgvectors.deb -sSL https://github.com/tensorchord/pgvecto.rs/releases/download/${PGVECTORS_TAG}/vectors-pg${PG_MAJOR}_${PGVECTORS_TAG#"v"}_${TARGETARCH}.deb && \
+RUN curl --fail -o pgvectors.deb -sSL https://github.com/tensorchord/pgvecto.rs/releases/download/${PGVECTORS_TAG}/vectors-pg${PG_MAJOR}-${PGVECTORS_TAG#"v"}-x86_64-unknown-linux-gnu.deb && \
     alien -r pgvectors.deb && \
     rm -f pgvectors.deb
-
 RUN rpm2cpio /tmp/*.rpm | cpio -idmv
 
 ARG CRUNCHYDATA_VERSION
